@@ -14,8 +14,7 @@ const multer = require('multer');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI =
-'mongodb+srv://Husin:kucing123@cluster0-jolks.mongodb.net/test';
+const MONGODB_URI = '';
 
 const app = express();
 const store = new MongoDBStore({
@@ -39,10 +38,10 @@ const fileStorage = multer.diskStorage({
 
 const fileType = (req, file, cb) => {
   if (
-    file.mimetype === 'image/png' || 
-    file.mimetype === 'image/jpeg' || 
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpeg' ||
     file.mimetype === 'image/jpg'
-    ) {
+  ) {
     cb(null, true);
   } else {
     cb(null, false);
@@ -57,7 +56,7 @@ const shopRoutes = require('./routes/shop');
 const authRoutes = require('./routes/auth');
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(multer({ storage: fileStorage, fileFilter: fileType}).single('image'));
+app.use(multer({ storage: fileStorage, fileFilter: fileType }).single('image'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(
@@ -130,4 +129,4 @@ mongoose
     console.log(err);
   });
 
-  console.log('hi')
+console.log('hi');
